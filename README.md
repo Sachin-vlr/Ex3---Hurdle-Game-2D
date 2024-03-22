@@ -24,7 +24,7 @@ NAME : SACHIN.C
 
 REG NO. : 212222230125
 
-PLAYER.CS
+### PLAYER.CS
 ```c++
 using System.Collections;
 using System.Collections.Generic;
@@ -65,7 +65,7 @@ public class Player : MonoBehaviour
 
 ```
 
-COIN MANAGER.CS
+### COIN MANAGER.CS
 ```c++
 using System.Collections;
 using System.Collections.Generic;
