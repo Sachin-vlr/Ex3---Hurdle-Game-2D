@@ -26,15 +26,74 @@ REG NO. : 212222230125
 
 PLAYER.CS
 ```c++
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using System.Threading;
+using System;
+public class Player : MonoBehaviour
+{
+    public float speed;
+    public float jumpforce;
+    private Rigidbody2D rb;
+    public Score cc;
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        float moveinp = Input.GetAxisRaw("Horizontal");
+        transform.position += new Vector3(moveinp, 0, 0)*speed*Time.deltaTime;
+        if (Input.GetKeyDown(KeyCode.Space)&&Mathf.Abs(rb.velocity.y) < 0.001f)
+        {
+            rb.AddForce(new Vector2(0, jumpforce), ForceMode2D.Impulse);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("destroy"))
+        {
+            cc.coincount++;
+            Destroy(collision.gameObject);
+        }
+    }
+}
 
 ```
 
 COIN MANAGER.CS
 ```c++
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class Score : MonoBehaviour
+{
+    // Start is called before the first frame update
+    public int coincount;
+    public Text value;
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        value.text=coincount.ToString();
+    }
+}
 
 ```
 
 ## OUTPUT:
+
+![image](https://github.com/Sachin-vlr/Ex3---Hurdle-Game-2D/assets/113497666/3caffdb3-64ba-4c31-85fa-7ca28fe1d7cb)
 
 ## RESULT:
 
